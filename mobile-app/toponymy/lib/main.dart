@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toponymy/src/navigation/model/app_state_manager.dart';
+import 'package:provider/provider.dart';
 import './src/navigation/navigator.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
+
 class _MyAppState extends State<MyApp> {
   late AppRouter _appRouter;
 
@@ -24,14 +26,20 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _appRouter = AppRouter(widget.appStateManager);
   }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => widget.appStateManager)
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Router(routerDelegate: _appRouter),
       ),
-      home: Router(routerDelegate: _appRouter),
     );
   }
 }

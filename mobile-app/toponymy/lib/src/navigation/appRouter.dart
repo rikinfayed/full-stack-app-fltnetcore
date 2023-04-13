@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:toponymy/src/home/home.dart';
 import './model/model.dart';
 import './screen/screen.dart';
+
 
 class AppRouter extends RouterDelegate with ChangeNotifier{
   final AppStateManager _appStateManager;
@@ -17,7 +18,8 @@ class AppRouter extends RouterDelegate with ChangeNotifier{
       pages: [
         //start::logic navigation
         //end::logic navigation
-        SplashScreen.page()
+        if(!_appStateManager.isInitialized) SplashScreen.page(),
+        if(_appStateManager.isInitialized) HomeScreen.page()
       ],
     );
   }
