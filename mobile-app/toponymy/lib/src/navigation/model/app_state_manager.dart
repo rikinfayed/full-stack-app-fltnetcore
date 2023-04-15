@@ -6,7 +6,7 @@ class AppStateManager extends ChangeNotifier{
   bool get isInitialized => _initialized;
 
   void initializedApp() async {
-    Future.delayed(Duration(microseconds: 3000), () {
+    await Future.delayed(const Duration(milliseconds: 5000), () {
       _initialized = true;
       notifyListeners();
     });
