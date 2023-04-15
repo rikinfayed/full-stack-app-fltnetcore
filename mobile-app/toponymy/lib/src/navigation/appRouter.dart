@@ -17,9 +17,9 @@ class AppRouter extends RouterDelegate with ChangeNotifier{
       onPopPage: _handlePopPage,
       pages: [
         //start::logic navigation
-        //end::logic navigation
         if(!_appStateManager.isInitialized) SplashScreen.page(),
-        if(_appStateManager.isInitialized) HomeScreen.page()
+        if(_appStateManager.isInitialized) HomeScreen.page(_appStateManager.selectedTab)
+        //end::logic navigation
       ],
     );
   }

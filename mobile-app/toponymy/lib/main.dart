@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toponymy/src/navigation/model/app_state_manager.dart';
 import 'package:provider/provider.dart';
+import 'package:toponymy/src/theme/toponymy_theme.dart';
 import './src/navigation/navigator.dart';
 
 void main() {
@@ -29,15 +30,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData toponymyTheme = ToponymyTheme.light();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => widget.appStateManager)
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: toponymyTheme,
         home: Router(routerDelegate: _appRouter),
       ),
     );
