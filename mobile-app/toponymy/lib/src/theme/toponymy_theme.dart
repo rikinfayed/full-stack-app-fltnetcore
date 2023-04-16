@@ -139,6 +139,9 @@ class ToponymyTheme {
           ),
         ),
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: ToponymyTheme.skyWhite,
+          ),
       iconTheme: IconThemeData(color: inkDarkest, size: iconSize),
     );
   }

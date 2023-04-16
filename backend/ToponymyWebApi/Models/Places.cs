@@ -23,6 +23,12 @@ public class Places
 
     public DateOnly date { get; set; }
 
+    [Column("latitude")]
+    public double Latitude { get; set; }
+    
+    [Column("longitude")]
+    public double Longitude { get; set; }
+
     [Column("is_deleted")]
     public Boolean isDeleted { get; set;} = false;
 }

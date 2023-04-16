@@ -27,6 +27,11 @@ class HomeScreen extends StatelessWidget {
           _buildListPlaces(context),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text("Tambah", style: Theme.of(context).textTheme.button,),
+        onPressed: () {
+        Provider.of<PlacesBloc>(context, listen: false).add(LoadPlaces());
+      },),
       bottomNavigationBar: _buildBottomNavigationBar(context),
     );
   }
@@ -61,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       onTap: (index) {
         Provider.of<AppStateManager>(context, listen:false).goToTab(index);
       },
-      items: <BottomNavigationBarItem>[
+      items: const<BottomNavigationBarItem>[
         BottomNavigationBarItem(
             icon: Icon( 
             Icons.location_on_outlined,

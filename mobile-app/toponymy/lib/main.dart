@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toponymy/src/navigation/model/app_state_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+
+import 'package:toponymy/src/maps/maps.dart';
+import 'package:toponymy/src/navigation/navigation.dart';
 import 'package:toponymy/src/theme/toponymy_theme.dart';
-import './src/navigation/navigator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +35,8 @@ class _MyAppState extends State<MyApp> {
     final ThemeData toponymyTheme = ToponymyTheme.light();
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => widget.appStateManager)
+        ChangeNotifierProvider(create: (context) => widget.appStateManager),
+        BlocProvider(create: (context) => PlacesBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

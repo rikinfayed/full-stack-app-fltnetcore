@@ -5,10 +5,10 @@ import 'package:toponymy/src/constant/constant.dart';
 
 class ProviderNetwork {
   Future<dynamic> get(String path) async {
-    var responseJson;
+    dynamic responseJson;
     try {
       HttpClient client = new HttpClient()
-      ..badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+      ..badCertificateCallback = ((X509Certificate cert, String host, int port) => ignoreSSL);
 
       HttpClientRequest request = await client.openUrl(
           'GET', Uri.parse(REST_URL + path));
@@ -24,20 +24,20 @@ class ProviderNetwork {
   dynamic _response(HttpClientResponse response) async {
     switch (response.statusCode) {
       case 200: 
-        String reply = await response.transform(utf8.decoder).join();
-        Map<String, dynamic> jsonObject = json.decoder.convert(reply);
-        var responseJson = jsonObject;
-
+        String responseJson = await response.transform(utf8.decoder).join();
         return responseJson;
       case 400:
+        print("400");
         throw BadRequestException(response.transform(utf8.decoder).toString());
       case 401:
 
       case 403:
+        print("401 403");
         throw UnauthorisedException(response.transform(utf8.decoder).toString());
       case 500:
 
       default:
+        print("500 default");
         throw FetchDataException(
             'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
     }

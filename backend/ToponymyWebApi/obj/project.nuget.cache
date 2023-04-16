@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MhxGbGCPgeUG2ilRc/fFe0IDT45/gmNNG2upcjT6DPhbbARvZI2kRCme1EdSvPCF+I67o1UjJOekBKT2sykhaQ==",
+  "dgSpecHash": "qLamBAx7v85qPlQXGo/Z51WdDr8QAKHphYMpvKKvOAQ6CSVGijAB6sLRzv07DKUi01y6BAa/WrAytDdgzIzkgw==",
   "success": true,
-  "projectFilePath": "/home/rikin/Research/NET/Assignment/toponymy/backend/ToponymyWebApi/ToponymyWebApi.csproj",
+  "projectFilePath": "/home/rikin/Research/NET/full-stack-app-fltnetcore/backend/ToponymyWebApi/ToponymyWebApi.csproj",
   "expectedPackageFiles": [
     "/home/rikin/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/rikin/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
@@ -197,9 +197,9 @@
     "/home/rikin/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/home/rikin/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/home/rikin/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/rikin/.nuget/packages/microsoft.netcore.app.ref/7.0.4/microsoft.netcore.app.ref.7.0.4.nupkg.sha512",
     "/home/rikin/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.4/microsoft.aspnetcore.app.ref.7.0.4.nupkg.sha512",
-    "/home/rikin/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.4/microsoft.netcore.app.host.linux-x64.7.0.4.nupkg.sha512",
-    "/home/rikin/.nuget/packages/microsoft.netcore.app.ref/7.0.4/microsoft.netcore.app.ref.7.0.4.nupkg.sha512"
+    "/home/rikin/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.4/microsoft.netcore.app.host.linux-x64.7.0.4.nupkg.sha512"
   ],
   "logs": []
 }

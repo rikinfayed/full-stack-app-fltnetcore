@@ -11022,11 +11022,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/rikin/Research/NET/Assignment/toponymy/backend/ToponymyWebApi/ToponymyWebApi.csproj",
+      "projectUniqueName": "/home/rikin/Research/NET/full-stack-app-fltnetcore/backend/ToponymyWebApi/ToponymyWebApi.csproj",
       "projectName": "ToponymyWebApi",
-      "projectPath": "/home/rikin/Research/NET/Assignment/toponymy/backend/ToponymyWebApi/ToponymyWebApi.csproj",
+      "projectPath": "/home/rikin/Research/NET/full-stack-app-fltnetcore/backend/ToponymyWebApi/ToponymyWebApi.csproj",
       "packagesPath": "/home/rikin/.nuget/packages/",
-      "outputPath": "/home/rikin/Research/NET/Assignment/toponymy/backend/ToponymyWebApi/obj/",
+      "outputPath": "/home/rikin/Research/NET/full-stack-app-fltnetcore/backend/ToponymyWebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/rikin/.nuget/NuGet/NuGet.Config"
