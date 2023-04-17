@@ -2,17 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toponymy/src/navigation/model/app_state_manager.dart';
 import 'package:toponymy/src/maps/maps.dart';
+import 'package:toponymy/src/place/screen/add_place_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../navigation/model/model.dart';
+
+class HomeScreen extends StatefulWidget {
   final int currentTab;
-  const HomeScreen({Key? key,required this.currentTab}) : super(key: key);
+  HomeScreen({Key? key,required this.currentTab}) : super(key: key);
 
   static MaterialPage page(int currentTab) {
     return MaterialPage(
       child: HomeScreen(currentTab: currentTab),
     );
   }
+  
+  @override
+  _HomeScreen createState() => _HomeScreen();
+}
 
+class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         preferredSize: AppBar().preferredSize,
       ),
       body: IndexedStack(
-        index:currentTab,
+        index:widget.currentTab,
         children: [
           MapsScreen(),
           _buildListPlaces(context),
@@ -30,7 +38,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: Text("Tambah", style: Theme.of(context).textTheme.button,),
         onPressed: () {
-        Provider.of<PlacesBloc>(context, listen: false).add(LoadPlaces());
+          Provider.of<PlaceStateManager>(context, listen:false).AddPlace();       
       },),
       bottomNavigationBar: _buildBottomNavigationBar(context),
     );
@@ -55,7 +63,7 @@ class HomeScreen extends StatelessWidget {
   static Color skyWhite = const Color.fromRGBO(255, 255, 255, 1);
   Widget _buildBottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: currentTab,
+      currentIndex: widget.currentTab,
       type: BottomNavigationBarType.fixed,
       elevation: 1,
       showSelectedLabels: true,

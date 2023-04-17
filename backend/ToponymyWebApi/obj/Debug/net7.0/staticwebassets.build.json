@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "rRwzPV23JX6nj6YxnTgvmJDP9vI8hgvKmL2Ypy2yytY=",
+  "Source": "ToponymyWebApi",
+  "BasePath": "_content/ToponymyWebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,7 +31,7 @@ class _MapsScreen extends State<MapsScreen> {
           //TODO ERROR handling
         },
         builder: (context, placesState) {
-
+          print(placesState);
           Widget widget = Center(child: CircularProgressIndicator());
 
           if (placesState is PlacesInitial) {
@@ -43,31 +44,24 @@ class _MapsScreen extends State<MapsScreen> {
               mapToolbarEnabled: false,
               markers: placesState.markers.values.toSet(),
               initialCameraPosition:
-                  CameraPosition(target: _initialPosition, zoom: 11),
+                  CameraPosition(target: placesState.initialPosition, zoom: 11),
             );
+
+            //mapController.animateCamera(CameraUpdate.newLatLngZoom(placesState.initialPosition, 14));
           }
+
 
           return widget;
         });
   }
 
   //TODO Get posisision
-  final LatLng _initialPosition =
-      LatLng(-6.211679831657398, 106.84641695511087);
-
-  final Map<String, Marker> _markers = {};
-
   late GoogleMapController mapController;
 
   void _onMapCreated(GoogleMapController controller) {
-    //mapController = controller;
+    
     setState(() {
-      // _markers.clear();
-      // final marker = Marker(
-      //     markerId: MarkerId("nama location"),
-      //     position: _initialPosition,
-      //     infoWindow: InfoWindow(title: "nama location", snippet: "deskripsi"));
-      // _markers["nama location"] = marker;
+      mapController = controller;   
     });
   }
 }

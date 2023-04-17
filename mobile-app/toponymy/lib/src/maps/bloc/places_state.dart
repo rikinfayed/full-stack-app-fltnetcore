@@ -16,9 +16,11 @@ class PlacesLoading extends PlacesState {
 class PlacesLoaded extends PlacesState {
   List<Place> places;
   Map<String, Marker> markers = {};
+  LatLng initialPosition =
+      LatLng(0, 0);
 
-  PlacesLoaded(this.places, this.markers);
+  PlacesLoaded(this.places, this.markers, this.initialPosition);
 
   @override
-  List<Object> get props => [this.places, this.markers];
+  List<Object> get props => [this.places, this.markers, this.initialPosition];
 }

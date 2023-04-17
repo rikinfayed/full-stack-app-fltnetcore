@@ -21,9 +21,32 @@ class ProviderNetwork {
     return responseJson;
   }
 
+  Future<dynamic> post(String path, Map map) async {
+    dynamic responseJson;
+    try {
+      HttpClient client = new HttpClient()
+      ..badCertificateCallback = ((X509Certificate cert, String host, int port) => ignoreSSL);
+
+      HttpClientRequest request = await client.openUrl(
+          'POST', Uri.parse(REST_URL + path));
+
+      print(json.encode(map));
+      request.headers.set(HttpHeaders.contentTypeHeader, "application/json");
+      request.add(utf8.encode(json.encode(map)));
+
+
+      HttpClientResponse response = await request.close();
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   dynamic _response(HttpClientResponse response) async {
     switch (response.statusCode) {
       case 200: 
+      case 201:
         String responseJson = await response.transform(utf8.decoder).join();
         return responseJson;
       case 400:

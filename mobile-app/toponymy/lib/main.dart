@@ -9,13 +9,15 @@ import 'package:toponymy/src/theme/toponymy_theme.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final AppStateManager appStateManager = AppStateManager();
-  runApp(MyApp(appStateManager: appStateManager));
+  final PlaceStateManager placeStateManager = PlaceStateManager();
+  runApp(MyApp(appStateManager: appStateManager, placeStateManager : placeStateManager));
 }
 
 class MyApp extends StatefulWidget {
   final AppStateManager appStateManager;
+  final PlaceStateManager placeStateManager;
 
-  const MyApp({required this.appStateManager, Key? key}) : super(key: key);
+  const MyApp({required this.appStateManager, required this.placeStateManager, Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -27,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _appRouter = AppRouter(widget.appStateManager);
+    _appRouter = AppRouter(widget.appStateManager, widget.placeStateManager);
   }
 
   @override
@@ -36,12 +38,13 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => widget.appStateManager),
+        ChangeNotifierProvider(create: (context) => widget.placeStateManager),
         BlocProvider(create: (context) => PlacesBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: toponymyTheme,
-        home: Router(routerDelegate: _appRouter),
+        home: Router(routerDelegate: _appRouter,backButtonDispatcher: RootBackButtonDispatcher()),
       ),
     );
   }
