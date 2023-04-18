@@ -11,6 +11,7 @@ class ToponymyTheme {
   static Color skyLight = const Color.fromRGBO(227, 229, 229, 1);
   static Color skyDark = const Color.fromRGBO(151, 156, 158, 1);
   static Color brandBase = const Color.fromRGBO(107, 78, 255, 1);
+  static Color redBase = const Color.fromRGBO(255, 82, 71, 1);
 
   static String fontFamily = "inter";
   static const double iconSize = 18;
@@ -131,6 +132,11 @@ class ToponymyTheme {
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             borderSide: BorderSide(
               color: ToponymyTheme.skyLight,
+            )),
+        errorBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            borderSide: BorderSide(
+              color: ToponymyTheme.redBase,
             )),
         border: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),

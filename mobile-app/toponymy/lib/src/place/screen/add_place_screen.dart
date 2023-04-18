@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,6 @@ class AddPlaceScreen extends StatefulWidget {
 
   static MaterialPage page() {
     return const MaterialPage(
-        //TODO key and name
         name: "addplace",
         child: AddPlaceScreen());
   }
@@ -143,7 +143,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
               ),
               padding: const EdgeInsets.only(right: 12),
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Padding(
@@ -162,11 +162,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
 
   TextEditingController textPlaceName = TextEditingController();
 
+  bool isInvaliTextPlaceName = false;
+
   buildTextFieldPlaceName(BuildContext context) {
     return TextField(
       controller: textPlaceName,
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.all(16),
+      decoration: InputDecoration(
+        errorText: isInvaliTextPlaceName ? "Required" : null,
+        contentPadding: const EdgeInsets.all(16),
         hintText: 'place name',
       ),
     );
@@ -174,11 +177,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
 
   TextEditingController textOwenerName = TextEditingController();
 
+  bool isInvaliTextOwner = false;
+
   buildTextFieldOwnerName(BuildContext context) {
     return TextField(
       controller: textOwenerName,
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.all(16),
+      decoration: InputDecoration(
+        errorText: (isInvaliTextOwner) ? "Required" : null,
+        contentPadding: const EdgeInsets.all(16),
         hintText: 'owner name',
       ),
     );
@@ -186,11 +192,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
 
   TextEditingController textAddress = TextEditingController();
 
+  bool isInvaliTextAddress = false;
+
   buildTextFieldAddress(BuildContext context) {
     return TextField(
       controller: textAddress,
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.all(16),
+      decoration: InputDecoration(
+        errorText: isInvaliTextAddress ? 'Required' : null,
+        contentPadding: const EdgeInsets.all(16),
         hintText: 'address',
       ),
     );
@@ -295,9 +304,11 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
   }
 
   void _onSubmit() {
-    if (textOwenerName.text != "" &&
-        textPlaceName.text != "" &&
-        textAddress.text != "" &&
+    validationDo();
+
+    if (textOwenerName.text.isNotEmpty &&
+        textPlaceName.text.isNotEmpty &&
+        textAddress.text.isNotEmpty &&
         location != "Place" &&
         _marker != null) {
       Place place = Place(
@@ -312,5 +323,39 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
       Provider.of<PlacesBloc>(context, listen: false).add(StorePlace(place));
       Navigator.pop(context);
     }
+  }
+
+  void validationDo() {
+    setState(() { 
+          isInvaliTextOwner = textOwenerName.text.isEmpty;
+          isInvaliTextPlaceName = textPlaceName.text.isEmpty;
+          isInvaliTextAddress = textOwenerName.text.isEmpty;
+    });
+   
+    if (location == "Place") showAlert("Place Type is required");
+
+    if (_marker == null) showAlert("Pleace pick on map");
+  }
+
+  void showAlert(String message) {
+    _handlerScanbar(() {
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          content: Text(message),
+          backgroundColor: ToponymyTheme.redBase,
+          behavior: SnackBarBehavior.floating,
+        ));
+    });
+  }
+
+  void _handlerScanbar(Function callback) {
+    _onWidgetDidBuild(callback);
+  }
+
+  void _onWidgetDidBuild(Function callback) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      callback();
+    });
   }
 }
